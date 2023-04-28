@@ -1,5 +1,4 @@
 import requests
-import re
 import os
 import psycopg2
 
@@ -40,7 +39,7 @@ class HH():
                 host="localhost",
                 database="vacancies",
                 user="postgres",
-                password="rjv,byfwbz"
+                password=password
         ) as conn:
             with conn.cursor() as cur:
                 for emp in self.employers_dict:
@@ -51,7 +50,7 @@ class HH():
                 host="localhost",
                 database="vacancies",
                 user="postgres",
-                password="rjv,byfwbz"
+                password=password
         ) as conn:
             with conn.cursor() as cur:
                 for vac in self.get_vacancies():
@@ -64,7 +63,7 @@ class DBManager():
                 host="localhost",
                 database="vacancies",
                 user="postgres",
-                password="rjv,byfwbz"
+                password=password
         ) as conn:
             with conn.cursor() as cur:
                 cur.execute('select company_name, count(vacancy_name) from vacancies group by company_name')
@@ -76,7 +75,7 @@ class DBManager():
                 host="localhost",
                 database="vacancies",
                 user="postgres",
-                password="rjv,byfwbz"
+                password=password
         ) as conn:
             with conn.cursor() as cur:
                 cur.execute('select * from vacancies')
@@ -88,7 +87,7 @@ class DBManager():
                 host="localhost",
                 database="vacancies",
                 user="postgres",
-                password="rjv,byfwbz"
+                password=password
         ) as conn:
             with conn.cursor() as cur:
                 cur.execute('select avg(salary) from vacancies')
@@ -100,7 +99,7 @@ class DBManager():
                 host="localhost",
                 database="vacancies",
                 user="postgres",
-                password="rjv,byfwbz"
+                password=password
         ) as conn:
             with conn.cursor() as cur:
                 cur.execute('select vacancy_name from vacancies where salary > (select avg(salary) from vacancies)')
@@ -112,7 +111,7 @@ class DBManager():
                 host="localhost",
                 database="vacancies",
                 user="postgres",
-                password="rjv,byfwbz"
+                password=password
         ) as conn:
             with conn.cursor() as cur:
                 cur.execute(f"select vacancy_name from vacancies where vacancy_name like '%{keyword}%'")
